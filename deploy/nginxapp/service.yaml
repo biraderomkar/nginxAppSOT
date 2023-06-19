@@ -2,6 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: nginx-service
+  namespace: fluxcdtutorial
   labels:
     name: nginx-service
 spec:
