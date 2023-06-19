@@ -5,7 +5,7 @@ metadata:
   name: nginxappsotkust
   namespace: fluxcdtutorial
 spec:
-  interval: 1m0s
+  interval: 30s
   path: ./deploy
   prune: true
   sourceRef:

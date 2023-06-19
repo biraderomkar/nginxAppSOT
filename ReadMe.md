@@ -25,5 +25,5 @@ flux create source git nginxappsot \
  --path="./deploy/" \
  --prune=true \
  --validation=client \
- --interval=1m \
+ --interval=30s  \
  --export > ./deploy/flux_sync.yaml
