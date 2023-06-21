@@ -27,3 +27,20 @@ flux create source git nginxappsot \
  --validation=client \
  --interval=30s  \
  --export > ./deploy/flux_sync.yaml
+
+ # Setting Up prometheus stack
+ flux create source git flux-monitoring \
+  --interval=30m \
+  --url=https://github.com/fluxcd/flux2 \
+  --branch=main \
+  --export > ./deploy/flux_monitoring_source.yaml
+
+# Apply kube-prom-stack using below kustomization definition
+flux create kustomization kube-prometheus-stack \
+  --interval=1h \
+  --prune \
+  --source=flux-monitoring \
+  --path="./manifests/monitoring/kube-prometheus-stack" \
+  --health-check-timeout=5m \
+  --wait \
+  --export > ./deploy/flux_monitoring_sync.yaml
